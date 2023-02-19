@@ -14,30 +14,42 @@ describe('Restaurant and Menu Models', () => {
         // by setting 'force:true' the tables are recreated each time the 
         // test suite is run
         await sequelize.sync({ force: true });
+
     });
 
     test('can create a Restaurant', async () => {
         // TODO - write test
-        expect('NO TEST').toEqual('EXPECTED DATA')
+        const restaurant1 = await Restaurant.create(seedRestaurant[0])
+        expect(restaurant1).toBeInstanceOf(Restaurant)
     });
 
     test('can create a Menu', async () => {
         // TODO - write test
-        expect('NO TEST').toEqual('EXPECTED DATA')
+        const menu1 = await Menu.create(seedMenu[0])
+        expect(menu1).toBeInstanceOf(Menu)
     });
 
     test('can find Restaurants', async () => {
         // TODO - write test
-        expect('NO TEST').toEqual('EXPECTED DATA')
+        
+        const restaurantFound = await Restaurant.findOne()
+        expect(restaurantFound).toBeInstanceOf(Restaurant)
     });
 
     test('can find Menus', async () => {
         // TODO - write test
-        expect('NO TEST').toEqual('EXPECTED DATA')
+        const menuFound = await Menu.findOne()
+        expect(menuFound).toBeInstanceOf(Menu)
     });
 
     test('can delete Restaurants', async () => {
         // TODO - write test
-        expect('NO TEST').toEqual('EXPECTED DATA')
+        
+        const restaurant2 = await Restaurant.create(seedRestaurant[1])
+        let restaurantLength = await Restaurant.findAll()
+        expect(restaurantLength.length).toBe(2)
+        restaurant2.destroy()
+        restaurantLength = await Restaurant.findAll()
+        expect(restaurantLength.length).toBe(1)
     });
 })
