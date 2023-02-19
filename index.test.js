@@ -52,4 +52,15 @@ describe('Restaurant and Menu Models', () => {
         restaurantLength = await Restaurant.findAll()
         expect(restaurantLength.length).toBe(1)
     });
+
+    test('can delete Menus', async () => {
+        // TODO - write test
+
+        const menu2 = await Menu.create(seedMenu[1])
+        let menuLength = await Menu.findAll()
+        expect(menuLength.length).toBe(2)
+        menu2.destroy()
+        menuLength = await Menu.findAll()
+        expect(menuLength.length).toBe(1)
+    });
 })
